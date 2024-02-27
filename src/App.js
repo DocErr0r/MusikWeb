@@ -1,33 +1,33 @@
-// import "./App.css";
-import "../src/components/styles/Navbar.css";
-import "../src/components/styles/Utility.css";
+import "./App.css";
 import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 
-import Login from "./components/Login";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Sidebar from "./components/Sidebar";
-import Footer from "./components/Footer";
+import Login from "./components/user/Login";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./components/home/Home";
+import Sidebar from "./components/sidebar/Sidebar";
+import Footer from "./components/footer/Footer";
 
 function App() {
+
+
   const Root = () => {
     return (
       <>
         <nav className="headerS">
           <Navbar />
         </nav>
-        <Outlet />
+        <main className="flex">
+          <Sidebar />
+          <Outlet />
+        </main>
+        <Footer />
       </>
     );
   };
   function Main() {
     return (
       <>
-        <main className="flex">
-          <Sidebar />
-          <Home />
-        </main>
-        <Footer />
+        <Home />
       </>
     )
   }
