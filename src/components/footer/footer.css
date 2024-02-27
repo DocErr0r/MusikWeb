@@ -1,0 +1,14 @@
+footer {
+    /* height: 4em; */
+    height: 4em;
+    width: 100%;
+    text-align: center;
+    background-color: #5f6d52;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}
+.player {
+    height: 100%;
+    padding: 10px;
+}
