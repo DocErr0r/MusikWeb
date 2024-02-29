@@ -11,79 +11,18 @@ body {
     color: white;
 }
 
-
 .headerS {
     position: sticky;
     top: 0;
     z-index: 3;
     width: 100%;
 }
-
-
+main {
+    width: 100%;
+}
 
 /* media quaery */
-@media screen and (max-width: 800px) {
-    .sidebar {
-        /* display: none; */
-        position: absolute;
-        z-index: 3;
-        left: -130%;
-        transition: all 0.3s ease-in-out;
-    }
-    .nav {
-        justify-content: end;
-    }
-    .search {
-        width: auto;
-    }
-    .btn {
-        height: 40px;
-        width: 60px;
-        font-size: 14px;
-    }
-    .brand {
-        min-width: auto;
-    }
-    .search-form input {
-        display: none;
-    }
-    .blank {
-        display: none;
-    }
-}
-@media screen and (max-width: 500px) {
-    .header {
-        padding: 0;
-    }
-    .brand {
-        min-width: auto;
-    }
-    .navbar {
-        justify-content: start;
-    }
-    .btn {
-        height: 25px;
-        width: 50px;
-        font-size: 14px;
-    }
-    .search {
-        margin: 0;
-        padding: 0;
-    }
-    .search-form label {
-        width: 30px;
-    }
-    .cart {
-        height: 18px;
-    }
-    .l .title {
-        font-size: 20px;
-    }
-    .l img {
-        height: 30px;
-    }
-}
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 300px) {
     .header {
         overflow: hidden;
     }

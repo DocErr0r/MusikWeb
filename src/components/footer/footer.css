@@ -1,14 +1,13 @@
-footer {
-    /* height: 4em; */
+.player {
     height: 4em;
     width: 100%;
-    text-align: center;
-    background-color: #5f6d52;
+    background-color: saddlebrown;
     position: fixed;
     bottom: 0;
     z-index: 10;
 }
-.player {
-    height: 100%;
+.controls {
     padding: 10px;
+    width: 100%;
+    /* justify-content: space-around; */
 }

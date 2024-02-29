@@ -1,8 +1,10 @@
 import React from 'react';
+import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 
 export default function Card() {
     return (
         <div className="card">
+            <PlayCircleFilledIcon className="playicon" />
             <button className="playbtn circle none">
                 <img src="./public/playbtn.svg" alt="" />
             </button>

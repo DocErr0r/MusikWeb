@@ -6,5 +6,6 @@ import full from "./full.svg";
 import list from "./list.svg";
 import playbtn from "./playbtn.svg";
 import searchl from "./search.svg";
+import like from "./like.svg";
 
-export {logo , cart,dis,brow,full,list,playbtn,searchl};
+export {logo , cart,dis,brow,full,list,playbtn,searchl,like};

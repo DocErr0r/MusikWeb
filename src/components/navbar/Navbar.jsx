@@ -2,15 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cart, logo, searchl } from '../svgs/svgs';
 import './navbar.css';
+import MenuIcon from '@mui/icons-material/Menu';
 
-export default function Navbar() {
+export default function Navbar(props) {
     const [search, setSearch] = useState('');
-
-    const opensidebar = () => {
-        if (window.innerWidth <= 800) {
-            console.log('sidebaropen');
-        }
-    };
 
     function onchange(e) {
         setSearch(e.target.value);
@@ -20,10 +15,8 @@ export default function Navbar() {
             <div className="header">
                 <div className="navbar flex space-between">
                     <div className="brand flex gap-1 center-y">
-                        <div className="menuButton my-1">
-                            <button id="menuButton" onClick={opensidebar}>
-                                menu{' '}
-                            </button>
+                        <div className="menuButton my-1 center-y">
+                            <MenuIcon onClick={props.opensidebar} />
                         </div>
                         <div className="l flex center-y gap-1">
                             <img className="card10" src={logo} alt="" />
@@ -34,12 +27,12 @@ export default function Navbar() {
                             </span>
                         </div>
                     </div>
-                    <div className="nav flex">
+                    <div className="nav gap-10 flex center-y">
                         <div className="search">
-                            <form className="search-form flex" method="get" action="https://demo.avtheme.com/musik" data-pjax-state="">
+                            <form className="search-form flex center-y" method="get" action="https://demo.avtheme.com/musik" data-pjax-state="">
                                 <input className="none" type="search" placeholder="Search..." value={search} name="s" data-toggle="dropdown" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={onchange} />
                                 <label className="center" htmlFor="search-state" id="icon-search">
-                                    <i className="icon-search">
+                                    <i className="icon-search center">
                                         <img src={searchl} alt="" />
                                     </i>
                                 </label>
@@ -47,35 +40,30 @@ export default function Navbar() {
                             </form>
                         </div>
                         {/* <div className="blank flex w-20"></div> */}
-                        <div className=" flex">
+                        <div className=" flex center-y">
                             <nav className="menu-before-login">
-                                <div className="menu-before-login-container">
-                                    <ul className="navMenu flex none center-y end-x my-1 gap-1 h-100">
+                                <div className="menu-login-container">
+                                    <ul className="navMenu flex none center-y gap-1 my-1 h-100">
                                         <li className="relative">
                                             <Link className="none" to="#">
                                                 <img className="cart" src={cart} alt="" /> <span className="bage text-center">0</span>
                                             </Link>
                                         </li>
-                                        <li>
-                                            <button className="logbtn none btn">
-                                                <Link to="/login"> Login</Link>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button className="btn">Sign up</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="menu-after-login-container">
-                                    <ul className="navMenu flex none center-y end-x my-1 gap-1 h-100">
-                                        <li className="relative">
-                                            <Link className="none" to="#">
-                                                <img className="cart" src="./public/cart.svg" alt="" /> <span className="bage text-center">0</span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <button className="btn">Sign out</button>
-                                        </li>
+                                        <div className="menu-before-login-container flex">
+                                            <li>
+                                                <button className="logbtn none btn">
+                                                    <Link to="/login"> Login</Link>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button className="btn">Sign up</button>
+                                            </li>
+                                        </div>
+                                        <div className="menu-after-login-container">
+                                            <li>
+                                                <button className="btn">Sign out</button>
+                                            </li>
+                                        </div>
                                     </ul>
                                 </div>
                             </nav>

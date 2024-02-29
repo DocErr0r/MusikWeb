@@ -4,15 +4,18 @@
     height: 4em;
     position: fixed;
     z-index: 3;
-    width: 245px;
+    width: 185px;
     top: 0;
     background-color: rgb(27, 27, 27);
     /* background-color: rgb(105, 13, 13); */
 }
 .sidebar {
     background-color: rgb(27, 27, 27);
-    min-width: 235px;
-    padding: 0px 0 4em 35px;
+    min-width: 170px;
+    padding: 0px 5px 4em 20px;
+}
+.closeButton {
+    transition: 0.3s linear;
 }
 .menu {
     height: calc(100vh - 2 * 4em);
@@ -21,27 +24,35 @@
 .menu::-webkit-scrollbar {
     display: none;
 }
-.menu h2 {
+.menu h4 {
     color: gray;
 }
-#menu div a {
-    display: flex;
-    gap: 10px;
-    margin: 30px 0;
-    font-size: 20px;
+.active {
+    color: red;
 }
+#menu div .link {
+    display: flex;
+    text-align: center;
+    gap: 10px;
+    margin: 5px 0;
+    padding: 5px;
+}
+.link:hover {
+    color: rgb(109, 109, 109);
+}
+
 .sidebar-footer {
     margin-bottom: 30px;
     color: gray;
-    font-size: 18px;
+    font-size: 14px;
 }
 .sidebar-footer p {
     color: white;
 }
 .switch {
     position: relative;
-    width: 40px;
-    height: 20px;
+    width: 33px;
+    height: 16px;
 }
 .switch input {
     opacity: 0;
@@ -72,8 +83,8 @@ input:checked + .slider {
 .slider:before {
     position: absolute;
     content: '';
-    height: 22px;
-    width: 22px;
+    height: 18px;
+    width: 18px;
     left: 1px;
     bottom: -1px;
     background-color: white;
@@ -84,4 +95,20 @@ input:checked + .slider:before {
     -webkit-transform: translateX(16px);
     -ms-transform: translateX(16px);
     transform: translateX(16px);
+}
+@media only screen and (max-width: 900px) {
+    .sidebar {
+        -webkit-transition: all 0.3s ease-in;
+        transition: all 0.3s ease-in;
+        position: fixed;
+        position: absolute;
+        z-index: 3;
+        left: -130%;
+        width: 250px;
+    }
+    .brand2 {
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease;
+        width: 265px;
+    }
 }
