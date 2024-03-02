@@ -32,16 +32,16 @@ function App() {
     }
   }
 
-  const [side, setSide] = useState({ left: '0' });
+  const [side, setSide] = useState(false);
   const opensidebar = () => {
     if (window.innerWidth <= 900) {
-      setSide({ left: '0' });
+      setSide(true);
 
     }
   };
   const closeSidebar = () => {
     if (window.innerWidth <= 900) {
-      setSide({ left: '-130%' });
+      setSide(false);
 
     }
   };
@@ -54,7 +54,6 @@ function App() {
           <Navbar opensidebar={opensidebar} />
         </nav>
         <main className="flex">
-          {/* <Sidebar visible={visible} closeSidebar={closeSidebar} /> */}
           <Sidebar visible={visible} closeSidebar={closeSidebar} side={side} />
           <Outlet />
         </main>

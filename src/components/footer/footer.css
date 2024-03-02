@@ -11,3 +11,35 @@
     width: 100%;
     /* justify-content: space-around; */
 }
+.player-control {
+    width: 100%;
+}
+.songinfo {
+    min-width: 25%;
+    background-color: red;
+    justify-content: space-between;
+}
+.songinfo img {
+    height: 45px;
+}
+.songinfo .yoursaver {
+    margin-left: 10px;
+}
+.songinfo .aboutsong .title {
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.controlsply .icon {
+    font-size: 35px;
+}
+.seekbar {
+    margin: 8px;
+    background-color: black;
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+}
+.seekbarC {
+    width: 50%;
+}

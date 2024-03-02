@@ -1,0 +1,15 @@
+.LikesP {
+    margin: 23px;
+}
+h3 {
+    margin: 10px 0;
+}
+.lists ul li {
+    border: 1px solid white;
+    padding: 15px;
+}
+.lists ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}

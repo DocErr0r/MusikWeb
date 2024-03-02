@@ -4,14 +4,14 @@
     height: 4em;
     position: fixed;
     z-index: 3;
-    width: 185px;
+    width: 195px;
     top: 0;
     background-color: rgb(27, 27, 27);
     /* background-color: rgb(105, 13, 13); */
 }
 .sidebar {
     background-color: rgb(27, 27, 27);
-    min-width: 170px;
+    min-width: 180px;
     padding: 0px 5px 4em 20px;
 }
 .closeButton {
@@ -98,17 +98,22 @@ input:checked + .slider:before {
 }
 @media only screen and (max-width: 900px) {
     .sidebar {
-        -webkit-transition: all 0.3s ease-in;
-        transition: all 0.3s ease-in;
         position: fixed;
         position: absolute;
         z-index: 3;
         left: -130%;
         width: 250px;
+        animation: show 0.4s 1 ease-in;
     }
     .brand2 {
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease;
         width: 265px;
+    }
+    @keyframes show {
+        from {
+            left: -150%;
+        }
+        to {
+            left: 0;
+        }
     }
 }
