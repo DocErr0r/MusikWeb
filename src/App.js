@@ -12,16 +12,28 @@ import Playlists from "./components/sidebar/sidebarPages/Playlist";
 import Likes from "./components/sidebar/sidebarPages/Likes";
 
 import { useEffect, useState } from "react";
+import { useStateProvider } from "./utils/stateProvider";
+import { reducerCase } from "./utils/constants";
 
 function App() {
   const [visible, setVisible] = useState(false);
 
-
+  const [{ token }, dispatch] = useStateProvider();
   useEffect(() => {
-    if (window.innerWidth <= 900) {
-      setVisible(true)
+    const hash = window.location.hash;
+
+    if (hash) {
+      const token = hash.substring(1).split('&')[0].split('=')[1];
+      dispatch({ type: reducerCase.SET_TOKEN, token });
     }
-  }, []);
+  }, [token, dispatch]);
+
+
+  // useEffect(() => {
+  //   if (window.innerWidth <= 900) {
+  //     setVisible(true)
+  //   }
+  // }, []);
 
   const handleResize = () => {
     if (window.innerWidth <= 900) {
@@ -64,7 +76,7 @@ function App() {
   function Main() {
     return (
       <>
-        <Home />
+        {token ? <Home /> : <Login />}
       </>
     )
   }
@@ -72,7 +84,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Main />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Main />} />
         <Route path="/browse" element={<Browse />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/likes" element={<Likes />} />

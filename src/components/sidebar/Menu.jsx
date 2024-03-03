@@ -3,7 +3,7 @@ import { brow, dis, like, list } from '../svgs/svgs';
 import DownloadIcon from '@mui/icons-material/Download';
 import { Link } from 'react-router-dom';
 
-export default function Menu({ children }) {
+export default function Menu(props) {
     const menuItem = [
         {
             icon: dis,
@@ -33,7 +33,7 @@ export default function Menu({ children }) {
                     <div key={index}>
                         {index === 2 && <h4>My collection</h4>}
                         <div className="submenu">
-                            <Link to={item.path} className="block link" activeclassname="active">
+                            <Link to={item.path} className="block link" activeclassname="active" onClick={props.closer} >
                                 <img src={item.icon} alt="" />
                                 {item.name}
                             </Link>

@@ -16,14 +16,14 @@ export default function Sidebar(props) {
                 <div className="l flex center-y gap-1">
                     <img className="box10" src={logo} alt="" />
                     <span className="title block f10">
-                        <Link href="/" rel="home" data-pjax-state="">
+                        <Link href="/" rel="home" data-pjax-state="" onClick={props.closeSidebar}>
                             Musik
                         </Link>
                     </span>
                 </div>
                 <div className=" m-10">{props.visible && <CloseIcon className="closeButton" onClick={props.closeSidebar} />}</div>
             </div>
-            <Menu />
+            <Menu closer={props.closeSidebar} />
         </aside>
     );
 }

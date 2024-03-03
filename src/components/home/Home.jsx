@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from './Card';
 import './home.css';
-import Artist from './Artist';
+import { useNavigate } from 'react-router-dom';
+// import Artist from './Artist';
 
 export default function Home() {
+    const navigate = useNavigate();
     return (
         <div className="main w-100 flex">
             <div className="container">
