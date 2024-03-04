@@ -29,13 +29,13 @@ export default function Navbar(props) {
                     </div>
                     <div className="nav gap-10 flex center-y">
                         <div className="search">
-                            <form className="search-form flex center-y" method="get" action="https://demo.avtheme.com/musik" data-pjax-state="">
-                                <input className="none" type="search" placeholder="Search..." value={search} name="s" data-toggle="dropdown" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={onchange} />
-                                <label className="center" htmlFor="search-state" id="icon-search">
+                            <form className="search-form flex center-y" data-pjax-state="">
+                                <input className="none" type="search" placeholder="Search..." value={search} name="serach" data-toggle="dropdown" onChange={onchange} />
+                                <span className="center label" htmlFor="search-state" id="icon-search">
                                     <i className="icon-search center">
                                         <img src={searchl} alt="" />
                                     </i>
-                                </label>
+                                </span>
                                 <div className="dropdown-menu"></div>
                             </form>
                         </div>

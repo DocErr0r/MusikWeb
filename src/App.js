@@ -28,6 +28,7 @@ function App() {
     }
   }, [token, dispatch]);
 
+  // console.log(token);
 
   // useEffect(() => {
   //   if (window.innerWidth <= 900) {
@@ -88,7 +89,7 @@ function App() {
         <Route path="/browse" element={<Browse />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/likes" element={<Likes />} />
-        <Route path="/playlist" element={<Playlists />} />
+        <Route path="/playlist" element={<Playlists token={token} />} />
         <Route path="*" element={<h1>This page is note found</h1>} />
       </Route>
     )

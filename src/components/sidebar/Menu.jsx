@@ -33,7 +33,7 @@ export default function Menu(props) {
                     <div key={index}>
                         {index === 2 && <h4>My collection</h4>}
                         <div className="submenu">
-                            <Link to={item.path} className="block link" activeclassname="active" onClick={props.closer} >
+                            <Link to={item.path} className="block link" activeclassname="active" onClick={props.closer}>
                                 <img src={item.icon} alt="" />
                                 {item.name}
                             </Link>
@@ -43,10 +43,10 @@ export default function Menu(props) {
                 <div className="settings submenu">
                     <h4>settings</h4>
                     <div className="flex link center-y">
-                        <label className="switch">
-                            <input type="checkbox" />
+                        <span className="switch">
+                            <input id="000013dj" type="checkbox" />
                             <span className="slider round"></span>
-                        </label>
+                        </span>
                         dark mode
                     </div>
                     <a className="block link" href="/" role="menuitem">

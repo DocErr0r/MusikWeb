@@ -40,7 +40,7 @@
 .search-form input:focus {
     outline: none;
 }
-.search-form label {
+.search-form .label {
     background-color: rgb(44, 43, 43);
     position: absolute;
     margin: 0 10px;
@@ -123,13 +123,13 @@
         width: 45px;
         font-size: 11px;
     }
-    .search-form label {
+    .search-form .label {
         width: 25px;
         height: 25px;
         top: -13px;
         left: 30px;
     }
-    .search-form label img {
+    .search-form .label img {
         width: 14px;
         /* height: 25px; */
     }
