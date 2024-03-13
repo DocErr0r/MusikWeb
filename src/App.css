@@ -19,8 +19,11 @@ body {
 }
 main {
     width: 100%;
+    /* transition: all 0.3s ease; */
 }
-
+.App {
+    background-color: black;
+}
 /* media quaery */
 @media screen and (max-width: 300px) {
     .header {

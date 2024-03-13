@@ -6,8 +6,9 @@ import { logo } from '../svgs/svgs';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar(props) {
-    let sideopen;
-    sideopen = {
+    
+
+    let sideopen = {
         left: props.side ? '0' : '-150%',
     };
     return (

@@ -1,9 +1,12 @@
 import React from 'react';
 import { brow, dis, like, list } from '../svgs/svgs';
 import DownloadIcon from '@mui/icons-material/Download';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Menu(props) {
+    const location = useLocation();
+    const isActive = location.pathname;
+
     const menuItem = [
         {
             icon: dis,
@@ -33,7 +36,7 @@ export default function Menu(props) {
                     <div key={index}>
                         {index === 2 && <h4>My collection</h4>}
                         <div className="submenu">
-                            <Link to={item.path} className="block link" activeclassname="active" onClick={props.closer}>
+                            <Link to={item.path} className={`block link ${isActive === item.path ? 'active' : ''}`} onClick={props.closer}>
                                 <img src={item.icon} alt="" />
                                 {item.name}
                             </Link>

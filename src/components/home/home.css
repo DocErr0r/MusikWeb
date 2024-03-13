@@ -2,7 +2,6 @@
     height: calc(100vh - 2 * 4em);
     overflow-y: auto;
     background-color: black;
-    width: 100%;
     /* margin-bottom: 4em; */
     margin-top: 1px;
 }

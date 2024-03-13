@@ -1,0 +1,22 @@
+.login {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background-color: black;
+    z-index: 10000;
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-btn {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    width: 200px;
+    font-size: 20px;
+}

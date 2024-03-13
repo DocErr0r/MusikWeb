@@ -1,6 +1,5 @@
-import "./App.css";
+import { useEffect, useState } from "react";
 import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-
 import Login from "./components/user/Login";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/Home";
@@ -10,15 +9,15 @@ import Browse from "./components/sidebar/sidebarPages/Browse";
 import Discover from "./components/sidebar/sidebarPages/Discover";
 import Playlists from "./components/sidebar/sidebarPages/Playlist";
 import Likes from "./components/sidebar/sidebarPages/Likes";
-
-import { useEffect, useState } from "react";
 import { useStateProvider } from "./utils/stateProvider";
 import { reducerCase } from "./utils/constants";
+import "./App.css";
+
+
 
 function App() {
-  const [visible, setVisible] = useState(false);
-
   const [{ token }, dispatch] = useStateProvider();
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
     const hash = window.location.hash;
 
@@ -26,15 +25,10 @@ function App() {
       const token = hash.substring(1).split('&')[0].split('=')[1];
       dispatch({ type: reducerCase.SET_TOKEN, token });
     }
+    window.location.href = "#"
   }, [token, dispatch]);
 
   // console.log(token);
-
-  // useEffect(() => {
-  //   if (window.innerWidth <= 900) {
-  //     setVisible(true)
-  //   }
-  // }, []);
 
   const handleResize = () => {
     if (window.innerWidth <= 900) {

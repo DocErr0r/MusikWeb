@@ -27,15 +27,13 @@
 .menu h4 {
     color: gray;
 }
-.active {
-    color: red;
-}
 #menu div .link {
     display: flex;
     text-align: center;
     gap: 10px;
     margin: 5px 0;
     padding: 5px;
+    transition: all 0.3s;
 }
 .link:hover {
     color: rgb(109, 109, 109);
@@ -95,6 +93,10 @@ input:checked + .slider:before {
     -webkit-transform: translateX(16px);
     -ms-transform: translateX(16px);
     transform: translateX(16px);
+}
+
+.active {
+    background-color: #000000;
 }
 @media only screen and (max-width: 900px) {
     .sidebar {

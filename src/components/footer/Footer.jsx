@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './footer.css';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
@@ -7,8 +7,28 @@ import PauseIcon from '@mui/icons-material/Pause';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import { useStateProvider } from '../../utils/stateProvider';
+import axios from 'axios';
 
 export default function Footer() {
+    const [{ token, songid }] = useStateProvider();
+    console.log(songid);
+    useEffect(() => {
+        const getplayList = async () => {
+            try {
+                const response = await axios.get(`https://api.spotify.com/v1/me/player/currently-playing `, {
+                    headers: {
+                        Authorization: 'Bearer ' + token,
+                    },
+                });
+                console.log(response);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getplayList();
+    }, [token]);
+
     return (
         <footer>
             <div className="player flex center-y">
