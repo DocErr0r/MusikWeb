@@ -1,31 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cart, logo, searchl } from '../svgs/svgs';
 import './navbar.css';
 import MenuIcon from '@mui/icons-material/Menu';
-import axios from 'axios';
-import { useStateProvider } from '../../utils/stateProvider';
-import { reducerCase } from '../../utils/constants';
 
 export default function Navbar(props) {
     const [search, setSearch] = useState('');
-    // const [{ token, profile }, dispatch] = useStateProvider();
-
-    // const getProfile = async () => {
-    //     try {
-    //         const response = await axios.get('https://api.spotify.com/v1/me', {
-    //             headers: {
-    //                 Authorization: 'Bearer ' + token,
-    //                 'Content-Type': 'application/json',
-    //             },
-    //         });
-    //         // console.log(response.data.display_name);
-    //         dispatch({ type: reducerCase.SET_PROFILE, profile: response.data.display_name });
-    //         return response.data.display_name;
-    //     } catch (error) {
-    //         console.log(error.message);
-    //     }
-    // };
 
     function onchange(e) {
         setSearch(e.target.value);

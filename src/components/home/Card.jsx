@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import { useStateProvider } from '../../utils/stateProvider';
-import { reducerCase } from '../../utils/constants';
 
 export default function Card(props) {
-    const [{ songid }, dispatch] = useStateProvider();
-    const songClick = (id) => {
-        dispatch({ type: reducerCase.SET_SONG, payload: id });
-    };
+    const [songid, setSongid] = useState(null);
 
     return (
         <div
             className="card"
-            onClick={(e) => {
-                e.preventDefault();
-                songClick(props.id);
+            onClick={() => {
+                setSongid(props.id);
+                console.log(songid);
             }}>
             <PlayCircleFilledIcon className="playicon" />
             <button className="playbtn circle none">

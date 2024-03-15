@@ -1,55 +1,36 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import Login from "./components/user/Login";
 import Navbar from "./components/navbar/Navbar";
-import Home from "./components/home/Home";
 import Sidebar from "./components/sidebar/Sidebar";
 import Footer from "./components/footer/Footer";
 import Browse from "./components/sidebar/sidebarPages/Browse";
 import Discover from "./components/sidebar/sidebarPages/Discover";
 import Playlists from "./components/sidebar/sidebarPages/Playlist";
 import Likes from "./components/sidebar/sidebarPages/Likes";
-import { useStateProvider } from "./utils/stateProvider";
-import { reducerCase } from "./utils/constants";
 import "./App.css";
+import Mainpage from "./components/Main/Mainpage";
 
 
 
 function App() {
-  const [{ token }, dispatch] = useStateProvider();
   const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const hash = window.location.hash;
-
-    if (hash) {
-      const token = hash.substring(1).split('&')[0].split('=')[1];
-      dispatch({ type: reducerCase.SET_TOKEN, token });
-    }
-    window.location.href = "#"
-  }, [token, dispatch]);
-
-  // console.log(token);
-
   const handleResize = () => {
     if (window.innerWidth <= 900) {
-      setVisible(true)
+      setVisible(true);
+    } else {
+      setVisible(false);
     }
-    else {
-      setVisible(false)
-    }
-  }
+  };
 
   const [side, setSide] = useState(false);
   const opensidebar = () => {
     if (window.innerWidth <= 900) {
       setSide(true);
-
     }
   };
   const closeSidebar = () => {
     if (window.innerWidth <= 900) {
       setSide(false);
-
     }
   };
 
@@ -68,22 +49,15 @@ function App() {
       </>
     );
   };
-  function Main() {
-    return (
-      <>
-        {token ? <Home /> : <Login />}
-      </>
-    )
-  }
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route index element={<Main />} />
-        <Route path="/home" element={<Main />} />
+        <Route index element={<Mainpage />} />
+        <Route path="/home" element={<Mainpage />} />
         <Route path="/browse" element={<Browse />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/likes" element={<Likes />} />
-        <Route path="/playlist" element={<Playlists token={token} />} />
+        <Route path="/playlist" element={<Playlists />} />
         <Route path="*" element={<h1>This page is note found</h1>} />
       </Route>
     )
@@ -91,7 +65,6 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router} />
-
       {/* <h1>hello word</h1> */}
     </div>
   );
