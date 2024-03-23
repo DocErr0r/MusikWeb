@@ -37,26 +37,28 @@ function Home() {
     // console.log(pltracks);
     return (
         <>
-            {playlists ? (
-                <div className="main w-100 flex">
-                    <div className="container">
-                        <div className="playlist flex">
-                            <img className="playlistimag" src={playlists.image} alt="" width={'150px'} />
-                            <div>
-                                <h2 className="main-title">{playlists.name}</h2>
-                                <p>{playlists.description}</p>
+            <div className="main w-100 flex">
+                <div className="container w-100">
+                    {playlists ? (
+                        <div>
+                            <div className="playlist flex">
+                                <img className="playlistimag" src={playlists.image} alt="" width={'150px'} />
+                                <div>
+                                    <h2 className="main-title">{playlists.name}</h2>
+                                    <p>{playlists.description}</p>
+                                </div>
+                            </div>
+                            <div className="card-container">
+                                {playlists?.tracks?.map(({ track }) => {
+                                    return <Card key={track.id} track={track} />;
+                                })}
                             </div>
                         </div>
-                        <div className="card-container">
-                            {playlists?.tracks?.map(({ track }) => {
-                                return <Card key={track.id} track={track} />;
-                            })}
-                        </div>
-                    </div>
+                    ) : (
+                        <h2 className="center">Loading...</h2>
+                    )}
                 </div>
-            ) : (
-                <h2 className="center">Loading...</h2>
-            )}
+            </div>
         </>
     );
 }

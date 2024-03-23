@@ -22,7 +22,7 @@ main {
     /* transition: all 0.3s ease; */
 }
 .App {
-    background-color: black;
+    background-color: gray;
 }
 /* media quaery */
 @media screen and (max-width: 300px) {

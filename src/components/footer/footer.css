@@ -12,6 +12,7 @@
     /* justify-content: space-around; */
 }
 .player-control {
+    display: flex;
     width: 100%;
     justify-content: space-between;
     padding: 10px;
@@ -33,12 +34,13 @@
 }
 .songinfo {
     overflow: hidden;
-    width: 23%;
+    /* width: 25%; */
     /* background-color: rgb(52, 51, 51); */
     align-items: center;
     /* justify-content: space-between; */
 }
 .aboutsong {
+    width: 100%;
     gap: 0.2rem;
 }
 .songinfo img {
@@ -69,7 +71,10 @@
     position: relative;
 }
 .seekbarC {
-    width: 80%;
+    width: 100%;
+}
+.trackdtl {
+    width: 30%;
 }
 .seekbarC .progress {
     position: absolute;
@@ -80,6 +85,21 @@
     border-radius: 100%;
     height: 15px;
 }
-.yoursaver {
-    width: 20%;
+@media screen and (max-width: 800px) {
+    .player {
+        height: 10em;
+    }
+    .player-control {
+        flex-direction: column;
+    }
+    .trackdtl {
+        width: 90%;
+        justify-content: space-around;
+    }
+    .songinfo {
+        width: 100%;
+    }
+    .controlsply {
+        width: 100%;
+    }
 }

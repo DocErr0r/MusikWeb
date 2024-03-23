@@ -7,7 +7,7 @@ export default function Discover() {
     }, []);
 
     return (
-        <div>
+        <div className="container w-100">
             <h1>Discover</h1>
         </div>
     );

@@ -4,7 +4,7 @@ const initialState = {
     token: null,
     selectedplaylistID: '37i9dQZF1DWZNJXX2UeBij',
     playlists: null,
-    track: { song: null, isplaying: true },
+    track: { song: null, isplaying: false },
     pltracks: [],
 
 }

@@ -15,9 +15,7 @@ import { VolumeUp } from '@mui/icons-material';
 export default function Footer() {
     const [p, setP] = useState(0);
     const [crtTime, setCrtTime] = useState(0);
-
-    const [index, setIndex] = useState(0);
-    const [volume, setVolume] = useState(0.4);
+    const [volume, setVolume] = useState(0.1);
 
     const dispatch = useDispatch();
     const { token, track, pltracks } = useSelector((state) => state.playreducer);
@@ -25,7 +23,7 @@ export default function Footer() {
     // console.log(song);
 
     useEffect(() => {}, [token, dispatch]);
-    const [isplaying, setIsplaying] = useState(track.isplaying);
+    const [isplaying, setIsplaying] = useState(false);
 
     const audioRef = useRef();
     const playpus = (audioRef) => {
@@ -39,6 +37,7 @@ export default function Footer() {
         const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2);
 
         const time = e.currentTarget.currentTime;
+        audioRef.current.volume = volume;
         setP(percent);
         // setPercentage(+percent);
         setCrtTime(time.toFixed(0));
@@ -48,28 +47,36 @@ export default function Footer() {
             <div className="player flex center-y">
                 <div className="controls flex">
                     {track.song ? (
-                        <div className="player-control gap-1 flex center-y w-100">
-                            <img src={song.album.images[2].url} alt="song" />
-                            <div className="songinfo flex center-y gap-1 ">
-                                <div className="aboutsong flex center-y ">
-                                    {/* <h2>ani</h2> */}
-                                    <div className="songtitle">
-                                        <p className="title">{song.name}</p>
-                                        <div>
-                                            <p>{song.artists[0].name}</p>
+                        <div className="player-control gap-1 center-y w-100">
+                            <div className="trackdtl gap-1 flex">
+                                <img src={song.album.images[2].url} alt="song" />
+                                <div className="songinfo flex center-y gap-1 ">
+                                    <div className="aboutsong flex center-y ">
+                                        {/* <h2>ani</h2> */}
+                                        <div className="songtitle">
+                                            <p className="title">{song.name}</p>
+                                            <div>
+                                                <p>{song.artists[0].name}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div className="yoursaver center-y gap-1">
+                                    <FavoriteBorderIcon />
+                                    <PlaylistAddIcon />
+                                    {/* <PlaylistAddCheckIcon /> */}
+                                </div>
                             </div>
-                            <audio id="player" src={song.preview_url} hidden={true} onTimeUpdate={getCurrDuration} controls ref={audioRef} autoPlay={isplaying} />
                             <div className="controlsply">
-                                {{ audioRef } && (
-                                    <div className="seekbarC flex gap-1">
+                                <audio id="player" src={song.preview_url} hidden={true} onTimeUpdate={getCurrDuration} controls ref={audioRef} autoPlay={isplaying} />
+                                {audioRef.current && (
+                                    <div className="seekbarC flex gap-1 center-x">
                                         {/* <p>{Math.floor(audioRef.current.currentTime) + 's'}</p> */}
                                         <p>{crtTime}s</p>
                                         <div className="seekbar">
                                             <div className="progress" style={{ left: `${p}%` }}></div>
                                         </div>
+
                                         <p>{Math.floor(audioRef.current.duration) + 's'}</p>
                                         {/* <p>{duration.min + ':' + duration.sec}</p> */}
                                     </div>
@@ -105,10 +112,7 @@ export default function Footer() {
                                     />
                                 </div>
                             </div>
-                            <div className="yoursaver gap-1">
-                                <FavoriteBorderIcon />
-                                <PlaylistAddIcon />
-                                {/* <PlaylistAddCheckIcon /> */}
+                            <div className="volumeBox gap-1">
                                 <VolumeUp />
                                 <input
                                     aria-label="volume"
@@ -127,7 +131,7 @@ export default function Footer() {
                             </div>
                         </div>
                     ) : (
-                        <h3>not playing</h3>
+                        <h3 className="center-x w-100 flex">not playing</h3>
                     )}
                 </div>
             </div>

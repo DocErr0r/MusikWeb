@@ -75,6 +75,11 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+@media screen and (max-width: 800px) {
+    .container {
+        height: calc(100vh - 4em - 10em);
+    }
+}
 @media screen and (max-width: 600px) {
     .card-container {
         grid-template-columns: repeat(2, 1fr);

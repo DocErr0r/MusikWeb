@@ -3,7 +3,7 @@ import './pages.css';
 
 export default function Likes() {
     return (
-        <div className="container">
+        <div className="container w-100">
             <div className="LikesP">
                 <h3>Your Likes</h3>
                 <div className="lists">
