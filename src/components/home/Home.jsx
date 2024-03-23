@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Card from './Card';
 import './home.css';
-import { getSongs } from '../../redux/slices/playerslice';
+import { getSongs, setplTracks } from '../../redux/slices/playerslice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 // import Artist from './Artist';
@@ -12,29 +12,29 @@ function Home() {
     useEffect(() => {
         const getplayList = async () => {
             try {
-                const response = await axios.get(`https://api.spotify.com/v1/playlists/37i9dQZF1DWZNJXX2UeBij`, {
+                const response = await axios.get(`https://api.spotify.com/v1/playlists/37i9dQZF1DX0XUfTFmNBRM`, {
                     headers: {
                         Authorization: 'Bearer ' + token,
                     },
                 });
+                // console.log(response.data.tracks.items);
                 let yourSong = {
                     id: await response.data.id,
                     name: await response.data.name,
                     image: await response.data.images[0].url,
-                    tracks: await response.data.tracks.items.map(({ track }) => ({
-                        id: track.id,
-                        name: track.name,
-                        image: track.album.images[1].url,
-                    })),
+                    description: await response.data.description,
+                    tracks: await response.data.tracks.items,
                 };
+                const pltrack = await response.data.tracks;
                 dispatch(getSongs(yourSong));
+                dispatch(setplTracks(pltrack));
             } catch (error) {
                 console.log(error);
             }
         };
         getplayList();
     }, [token, dispatch]);
-    // console.log(playlists);
+    // console.log(pltracks);
     return (
         <>
             {playlists ? (
@@ -42,11 +42,14 @@ function Home() {
                     <div className="container">
                         <div className="playlist flex">
                             <img className="playlistimag" src={playlists.image} alt="" width={'150px'} />
-                            <h2 className="main-title">{playlists.name}</h2>
+                            <div>
+                                <h2 className="main-title">{playlists.name}</h2>
+                                <p>{playlists.description}</p>
+                            </div>
                         </div>
                         <div className="card-container">
-                            {playlists?.tracks.map(({ id, name, image }) => {
-                                return <Card key={id} id={id} name={name} image={image} />;
+                            {playlists?.tracks?.map(({ track }) => {
+                                return <Card key={track.id} track={track} />;
                             })}
                         </div>
                     </div>

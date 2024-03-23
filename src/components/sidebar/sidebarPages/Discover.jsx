@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export default function Discover() {
-  return (
-      <div>
-          <h1>Discover</h1>
-      </div>
-  );
+    useEffect(() => {
+        toast('Wow so easy!');
+    }, []);
+
+    return (
+        <div>
+            <h1>Discover</h1>
+        </div>
+    );
 }

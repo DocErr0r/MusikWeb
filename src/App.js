@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import 'react-toastify/dist/ReactToastify.css';
 import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -9,10 +10,12 @@ import Playlists from "./components/sidebar/sidebarPages/Playlist";
 import Likes from "./components/sidebar/sidebarPages/Likes";
 import "./App.css";
 import Mainpage from "./components/Main/Mainpage";
+import { ToastContainer } from "react-toastify";
 
 
 
 function App() {
+
   const [visible, setVisible] = useState(false);
   const handleResize = () => {
     if (window.innerWidth <= 900) {
@@ -65,6 +68,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router} />
+      <ToastContainer position="bottom-center" autoClose={2000} pauseOnHover={false} theme="light" closeButton={false} />
       {/* <h1>hello word</h1> */}
     </div>
   );

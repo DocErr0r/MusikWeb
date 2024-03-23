@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './footer.css';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
@@ -10,116 +10,97 @@ import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setcrTrack } from '../../redux/slices/playerslice';
+import { VolumeUp } from '@mui/icons-material';
 
 export default function Footer() {
     const [p, setP] = useState(0);
+    const [crtTime, setCrtTime] = useState(0);
+
+    const [index, setIndex] = useState(0);
+    const [volume, setVolume] = useState(0.4);
+
     const dispatch = useDispatch();
-    const { token, track } = useSelector((state) => state.playreducer);
-    // console.log(token);
-    // const [{ token, track }, { getcurrentsong, changesong }] = useStateProvider();
-    useEffect(() => {
-        const getcurrenttrack = async () => {
-            try {
-                if (token) {
-                    const response = await axios.get(`https://api.spotify.com/v1/me/player/currently-playing `, {
-                        headers: {
-                            Authorization: 'Bearer ' + token,
-                        },
-                    });
-                    // console.log(response.data)
-                    if (response.data) {
-                        let playingsong = {
-                            id: response.data.item.id,
-                            name: response.data.item.name,
-                            isplaying: response.data.is_playing,
-                            image: response.data.item.album.images[2].url,
-                            artists: response.data.item.artists.map((artist) => artist.name),
-                            timelength: Math.floor(response.data.item.duration_ms / 60000) + '.' + Math.floor(response.data.item.duration_ms % 60000),
-                            progress: Math.floor(response.data.progress_ms / 60000) + '.' + (Math.floor(response.data.progress_ms % 60000) < 60 ? 0 : Math.floor(response.data.progress_ms % 60000)),
-                        };
-                        dispatch(setcrTrack(playingsong));
-                    }
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getcurrenttrack();
-        // setTimeout(() => {
-        if (track) setP((track.progress / track.timelength) * 100);
-        // console.log(p);
-        // }, 1000);
-    }, [token, dispatch, track]);
+    const { token, track, pltracks } = useSelector((state) => state.playreducer);
+    const { song } = track;
+    // console.log(song);
 
-    const chnagetrack = async (type) => {
-        // await axios.post(
-        //     `https://api.spotify.com/v1/me/player/${type}`,
-        //     {},
-        //     {
-        //         headers: {
-        //             Authorization: 'Bearer ' + token,
-        //         },
-        //     },
-        // );
-        console.log('require prieum');
-    };
-    const playpus = () => {
-        console.log('ok');
-    };
+    useEffect(() => {}, [token, dispatch]);
+    const [isplaying, setIsplaying] = useState(track.isplaying);
 
+    const audioRef = useRef();
+    const playpus = (audioRef) => {
+        if (!isplaying) audioRef.current.play();
+        else audioRef.current.pause();
+        setIsplaying(!isplaying);
+    };
+    let duration = song?.duration_ms ? { min: Math.floor(song.duration_ms / 60000), sec: Math.floor((song.duration_ms % 60000) / 1000) > 10 ? Math.floor((song.duration_ms % 60000) / 1000) : `0${Math.floor((song.duration_ms % 60000) / 1000)}` } : null;
     // console.log(track);
+    const getCurrDuration = (e) => {
+        const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2);
+
+        const time = e.currentTarget.currentTime;
+        setP(percent);
+        // setPercentage(+percent);
+        setCrtTime(time.toFixed(0));
+    };
     return (
         <footer>
             <div className="player flex center-y">
                 <div className="controls flex">
-                    {track && (
+                    {track.song ? (
                         <div className="player-control gap-1 flex center-y w-100">
-                            <img src={track.image} alt="song" />
+                            <img src={song.album.images[2].url} alt="song" />
                             <div className="songinfo flex center-y gap-1 ">
                                 <div className="aboutsong flex center-y ">
                                     {/* <h2>ani</h2> */}
                                     <div className="songtitle">
-                                        <p className="title">{track.name}</p>
+                                        <p className="title">{song.name}</p>
                                         <div>
-                                            <p>{track.artists}</p>
+                                            <p>{song.artists[0].name}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <audio id="player" src={song.preview_url} hidden={true} onTimeUpdate={getCurrDuration} controls ref={audioRef} autoPlay={isplaying} />
                             <div className="controlsply">
-                                <div className="seekbarC flex gap-1">
-                                    <p>{track.progress.slice(0, 4)}</p>
-                                    <div className="seekbar">
-                                        <div className="progress" style={{ left: `${p}%` }}></div>
+                                {{ audioRef } && (
+                                    <div className="seekbarC flex gap-1">
+                                        {/* <p>{Math.floor(audioRef.current.currentTime) + 's'}</p> */}
+                                        <p>{crtTime}s</p>
+                                        <div className="seekbar">
+                                            <div className="progress" style={{ left: `${p}%` }}></div>
+                                        </div>
+                                        <p>{Math.floor(audioRef.current.duration) + 's'}</p>
+                                        {/* <p>{duration.min + ':' + duration.sec}</p> */}
                                     </div>
-                                    <p>{track.timelength.slice(0, 4)}</p>
-                                </div>
+                                )}
                                 <div>
                                     <SkipPreviousIcon
                                         className="icon"
                                         onClick={() => {
-                                            chnagetrack('previous');
+                                            audioRef.current.currentTime = audioRef.current.currentTime - 5;
                                         }}
                                     />
-                                    {track.isplaying ? (
+                                    {isplaying ? (
                                         <PauseIcon
                                             className="icon"
                                             onClick={() => {
-                                                playpus();
+                                                playpus(audioRef);
                                             }}
                                         />
                                     ) : (
                                         <PlayArrowIcon
                                             className="icon"
                                             onClick={() => {
-                                                playpus();
+                                                playpus(audioRef);
                                             }}
                                         />
                                     )}
                                     <SkipNextIcon
                                         className="icon"
                                         onClick={() => {
-                                            chnagetrack('next');
+                                            // skip('next');
+                                            audioRef.current.currentTime = audioRef.current.currentTime + 5;
                                         }}
                                     />
                                 </div>
@@ -128,8 +109,25 @@ export default function Footer() {
                                 <FavoriteBorderIcon />
                                 <PlaylistAddIcon />
                                 {/* <PlaylistAddCheckIcon /> */}
+                                <VolumeUp />
+                                <input
+                                    aria-label="volume"
+                                    name="volume"
+                                    type="range"
+                                    min={0}
+                                    step={0.05}
+                                    max={1}
+                                    value={volume}
+                                    className="w-[70px] m-0 h-2 rounded-full accent-cyan-600 bg-gray-700 appearance-none cursor-pointer"
+                                    onChange={(e) => {
+                                        setVolume(e.currentTarget.valueAsNumber);
+                                        audioRef.current.volume = e.currentTarget.valueAsNumber;
+                                    }}
+                                />
                             </div>
                         </div>
+                    ) : (
+                        <h3>not playing</h3>
                     )}
                 </div>
             </div>
