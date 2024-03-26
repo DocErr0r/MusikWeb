@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import Sidebar from "./components/sidebar/Sidebar";
+// import Sidebar from "./components/sidebar/Sidebar";
 import Footer from "./components/footer/Footer";
 import Browse from "./components/sidebar/sidebarPages/Browse";
 import Discover from "./components/sidebar/sidebarPages/Discover";
