@@ -45,7 +45,7 @@ function App() {
           <Navbar opensidebar={opensidebar} />
         </nav>
         <main className="flex">
-          <Sidebar visible={visible} closeSidebar={closeSidebar} side={side} />
+          {/* <Sidebar visible={visible} closeSidebar={closeSidebar} side={side} /> */}
           <Outlet />
         </main>
         <Footer />

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import './footer.css';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
@@ -12,7 +12,7 @@ import axios from 'axios';
 import { setcrTrack } from '../../redux/slices/playerslice';
 import { VolumeUp } from '@mui/icons-material';
 
-export default function Footer() {
+export default memo(function Footer() {
     const [p, setP] = useState(0);
     const [crtTime, setCrtTime] = useState(0);
     const [volume, setVolume] = useState(0.1);
@@ -23,7 +23,7 @@ export default function Footer() {
     // console.log(song);
 
     useEffect(() => {}, [token, dispatch]);
-    const [isplaying, setIsplaying] = useState(false);
+    const [isplaying, setIsplaying] = useState(true);
 
     const audioRef = useRef();
     const playpus = (audioRef) => {
@@ -137,4 +137,4 @@ export default function Footer() {
             </div>
         </footer>
     );
-}
+});

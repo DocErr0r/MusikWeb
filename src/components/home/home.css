@@ -5,9 +5,9 @@
     /* margin-bottom: 4em; */
     margin-top: 1px;
 }
-.container::-webkit-scrollbar-track {
-    /* background: #cac8c8; */
-}
+/* .container::-webkit-scrollbar-track {
+    background: #cac8c8;
+} */
 .container::-webkit-scrollbar-thumb {
     background: rgb(67, 67, 67);
 }
@@ -17,9 +17,6 @@
 .container::-webkit-scrollbar {
     /* display: none; */
     width: 10px;
-}
-.container h2 {
-    margin: 10px 25px;
 }
 .card-container {
     margin: 34px;
@@ -86,7 +83,7 @@
         margin: 12px;
     }
 }
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 400px) {
     .card-container {
         grid-template-columns: repeat(1, 1fr);
     }

@@ -41,10 +41,10 @@ function Home() {
                 <div className="container w-100">
                     {playlists ? (
                         <div>
-                            <div className="playlist flex">
-                                <img className="playlistimag" src={playlists.image} alt="" width={'150px'} />
+                            <div className="playlist flex gap-1" style={{ margin: '1%' }}>
+                                <img className="playlistimag" src={playlists.image} alt="" width={'20%'} />
                                 <div>
-                                    <h2 className="main-title">{playlists.name}</h2>
+                                    <h3 className="main-title">{playlists.name}</h3>
                                     <p>{playlists.description}</p>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { brow, dis, like, list } from '../svgs/svgs';
 import DownloadIcon from '@mui/icons-material/Download';
 import { Link, useLocation } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 export default function Menu(props) {
     const location = useLocation();
     const isActive = location.pathname;
-
+    // const switchRef = useRef(null);
     const menuItem = [
         {
             icon: dis,
@@ -29,6 +29,11 @@ export default function Menu(props) {
             name: 'playlist',
         },
     ];
+    // const toggleSwitch = () => {
+    //     if (switchRef.current) {
+    //         switchRef.current.checked = !switchRef.current.checked;
+    //     }
+    // };
     return (
         <div className="menu">
             <div id="menu" role="menu">
@@ -45,13 +50,13 @@ export default function Menu(props) {
                 ))}
                 <div className="settings submenu">
                     <h4>settings</h4>
-                    <div className="flex link center-y">
+                    {/* <div className="flex link center-y" onClick={toggleSwitch}>
                         <span className="switch">
-                            <input id="000013dj" type="checkbox" />
+                            <input id="000013dj" type="checkbox" ref={switchRef} />
                             <span className="slider round"></span>
                         </span>
-                        dark mode
-                    </div>
+                        <span>{switchRef.current && switchRef.current.checked ? 'turned on' : 'dark mode'}</span>
+                    </div> */}
                     <a className="block link" href="/" role="menuitem">
                         <DownloadIcon />
                         download

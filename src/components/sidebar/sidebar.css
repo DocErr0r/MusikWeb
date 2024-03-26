@@ -109,3 +109,9 @@ input:checked + .slider:before {
         width: 265px;
     }
 }
+
+@media only screen and (max-width: 800px) {
+    .menu {
+        height: calc(100vh - 4em - 10em);
+    }
+}
