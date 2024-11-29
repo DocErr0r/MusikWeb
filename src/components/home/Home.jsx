@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import Card from './Card';
 import './home.css';
-import { getSongs, setplTracks } from '../../redux/slices/playerslice';
+import { getSongs, setPlatlists, setplTracks } from '../../redux/slices/playerslice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 // import Artist from './Artist';
 
 function Home() {
@@ -12,47 +13,38 @@ function Home() {
     useEffect(() => {
         const getplayList = async () => {
             try {
-                const response = await axios.get(`https://api.spotify.com/v1/playlists/37i9dQZF1DX0XUfTFmNBRM`, {
+                const response = await axios.get(`https://api.spotify.com/v1/me/playlists`, {
                     headers: {
                         Authorization: 'Bearer ' + token,
                     },
                 });
-                // console.log(response.data.tracks.items);
-                let yourSong = {
-                    id: await response.data.id,
-                    name: await response.data.name,
-                    image: await response.data.images[0].url,
-                    description: await response.data.description,
-                    tracks: await response.data.tracks.items,
-                };
-                const pltrack = await response.data.tracks;
-                dispatch(getSongs(yourSong));
-                dispatch(setplTracks(pltrack));
+                // console.log(response.data.items);
+                const playlists = await response.data.items;
+                dispatch(setPlatlists(playlists));
             } catch (error) {
                 console.log(error);
             }
         };
         getplayList();
     }, [token, dispatch]);
-    // console.log(pltracks);
+    // console.log(playlists);
     return (
         <>
             <div className="main w-100 flex">
                 <div className="container w-100">
                     {playlists ? (
                         <div>
-                            <div className="playlist flex gap-1" style={{ margin: '1%' }}>
-                                <img className="playlistimag" src={playlists.image} alt="" width={'20%'} />
-                                <div>
-                                    <h3 className="main-title">{playlists.name}</h3>
-                                    <p>{playlists.description}</p>
-                                </div>
-                            </div>
-                            <div className="card-container">
-                                {playlists?.tracks?.map(({ track }) => {
-                                    return <Card key={track.id} track={track} />;
-                                })}
-                            </div>
+                            {playlists.map((playlist) => (
+                                    <Link key={playlist.id} to={'/playlist/'+playlist.id}>
+                                        <div className="playlist flex gap-1" style={{ margin: '1%' }}>
+                                            <img className="playlistimag" src={playlist.images[0].url} alt="" width={'18%'} />
+                                            <div>
+                                                <h3 className="main-title">{playlist.name}</h3>
+                                                <p>{playlist.description}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                            ))}
                         </div>
                     ) : (
                         <h2 className="center">Loading...</h2>

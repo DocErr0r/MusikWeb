@@ -18,21 +18,20 @@ export default memo(function Footer() {
     const [volume, setVolume] = useState(0.1);
 
     const dispatch = useDispatch();
-    const { token, track, pltracks } = useSelector((state) => state.playreducer);
+    const { token, track,  } = useSelector((state) => state.playreducer);
     const { song } = track;
-    // console.log(song);
-
-    useEffect(() => {}, [token, dispatch]);
     const [isplaying, setIsplaying] = useState(true);
+    console.log(song);
 
-    const audioRef = useRef();
     const playpus = (audioRef) => {
         if (!isplaying) audioRef.current.play();
         else audioRef.current.pause();
         setIsplaying(!isplaying);
     };
+
+    useEffect(() => {}, [token, dispatch]);
+    const audioRef = useRef()
     let duration = song?.duration_ms ? { min: Math.floor(song.duration_ms / 60000), sec: Math.floor((song.duration_ms % 60000) / 1000) > 10 ? Math.floor((song.duration_ms % 60000) / 1000) : `0${Math.floor((song.duration_ms % 60000) / 1000)}` } : null;
-    // console.log(track);
     const getCurrDuration = (e) => {
         const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2);
 
@@ -42,6 +41,10 @@ export default memo(function Footer() {
         // setPercentage(+percent);
         setCrtTime(time.toFixed(0));
     };
+
+    if(song.preview_url===null){
+    return <h1>Spotify not provide access this</h1>
+    }
     return (
         <footer>
             <div className="player flex center-y">
@@ -131,7 +134,55 @@ export default memo(function Footer() {
                             </div>
                         </div>
                     ) : (
-                        <h3 className="center-x w-100 flex">not playing</h3>
+                        <div className="player-control gap-1 center-y w-100">
+                            <div className="trackdtl gap-1 flex">
+                                <img src={''} alt="song" />
+                                <div className="songinfo flex center-y gap-1 ">
+                                    <div className="aboutsong flex center-y ">
+                                        <div className="songtitle">
+                                            <p className="title">Not Play anything</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="yoursaver center-y gap-1">
+                                    <FavoriteBorderIcon />
+                                    <PlaylistAddIcon />
+                                    {/* <PlaylistAddCheckIcon /> */}
+                                </div>
+                            </div>
+                            <div className="controlsply">
+                                <audio id="player" src={''} hidden={true} onTimeUpdate={getCurrDuration} controls ref={audioRef} autoPlay={isplaying} />
+                                <div className="seekbarC flex gap-1 center-x">
+                                    <p>N/A</p>
+                                    <div className="seekbar">
+                                        <div className="progress" style={{ left: `${p}%` }}></div>
+                                    </div>
+                                    <p>N/A</p>
+                                </div>
+                                <div>
+                                    <SkipPreviousIcon className="icon" />
+                                    <PlayArrowIcon className="icon" />
+                                    <SkipNextIcon className="icon" />
+                                </div>
+                            </div>
+                            <div className="volumeBox gap-1">
+                                <VolumeUp />
+                                <input
+                                    aria-label="volume"
+                                    name="volume"
+                                    type="range"
+                                    min={0}
+                                    step={0.05}
+                                    max={1}
+                                    value={volume}
+                                    className="w-[70px] m-0 h-2 rounded-full accent-cyan-600 bg-gray-700 appearance-none cursor-pointer"
+                                    onChange={(e) => {
+                                        setVolume(e.currentTarget.valueAsNumber);
+                                        audioRef.current.volume = e.currentTarget.valueAsNumber;
+                                    }}
+                                />
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>

@@ -15,9 +15,9 @@ export default function Navbar(props) {
             <div className="header">
                 <div className="navbar flex space-between">
                     <div className="brand flex gap-1 center-y">
-                        <div className="menuButton my-1 center-y">
+                        {/* <div className="menuButton my-1 center-y">
                             <MenuIcon onClick={props.opensidebar} />
-                        </div>
+                        </div> */}
                         <div className="l flex center-y gap-1">
                             <img className="card10" src={logo} alt="" />
                             <span className="title f10">
@@ -45,14 +45,14 @@ export default function Navbar(props) {
                                 <div className="menu-login-container">
                                     <ul className="navMenu flex none center-y gap-1 my-1 h-100">
                                         <li className="relative">
-                                            <Link className="none" to="#">
+                                            {/* <Link className="none" to="#">
                                                 <img className="cart" src={cart} alt="" /> <span className="bage text-center">0</span>
-                                            </Link>
+                                            </Link> */}
                                         </li>
                                         <div className="menu-before-login-container flex">
                                             <li>
                                                 <button className="logbtn none btn">
-                                                    <Link to="/login"> Nitin</Link>
+                                                    <Link to="/login">user</Link>
                                                 </button>
                                             </li>
                                             {/* <li>

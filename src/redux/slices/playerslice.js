@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    token: null,
-    selectedplaylistID: '37i9dQZF1DWZNJXX2UeBij',
+    token: false,
     playlists: null,
-    track: { song: null, isplaying: false },
+    track: { song: null },
     pltracks: [],
 
 }
@@ -30,11 +29,14 @@ const playerSlice = createSlice({
         },
         setcrTrack: (state, action) => {
             state.track = action.payload
+        },
+        setPlatlists: (state, action) => {
+            state.playlists = action.payload
         }
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { setToken, gettoken, settokenlocal, getSongs, setcrTrack, setplTracks } = playerSlice.actions
+export const { setToken, gettoken, settokenlocal, getSongs, setcrTrack, setplTracks,setPlatlists } = playerSlice.actions
 
 export default playerSlice.reducer

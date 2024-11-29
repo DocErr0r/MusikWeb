@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
@@ -11,6 +11,7 @@ import Likes from "./components/sidebar/sidebarPages/Likes";
 import "./App.css";
 import Mainpage from "./components/Main/Mainpage";
 import { ToastContainer } from "react-toastify";
+import Home from "./components/home/Home";
 
 
 
@@ -55,13 +56,15 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route index element={<Mainpage />} />
-        <Route path="/home" element={<Mainpage />} />
-        <Route path="/browse" element={<Browse />} />
+        <Route element={<Mainpage />}>
+          <Route index element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          {/* <Route path="/browse" element={<Browse />} />
         <Route path="/discover" element={<Discover />} />
-        <Route path="/likes" element={<Likes />} />
-        <Route path="/playlist" element={<Playlists />} />
-        <Route path="*" element={<h1>This page is note found</h1>} />
+        <Route path="/likes" element={<Likes />} /> */}
+          <Route path="/playlist/:id" element={<Playlists />} />
+          <Route path="*" element={<h1>This page is note found</h1>} />
+        </Route>
       </Route>
     )
   );
