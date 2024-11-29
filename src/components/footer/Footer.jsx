@@ -14,7 +14,7 @@ export default memo(function Footer() {
     const [progress, setProgress] = useState(0);
     const [crtTime, setCrtTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [volume, setVolume] = useState(0.1);
+    const [volume, setVolume] = useState(1);
 
     const dispatch = useDispatch();
     const { trackIndex, pltracks } = useSelector((state) => state.playreducer);
@@ -43,7 +43,7 @@ export default memo(function Footer() {
 
     useEffect(() => {
         if (audioRef.current) {
-            audioRef.current.volume = volume;
+            audioRef.current.volume = volume
         }
     }, [volume]);
 

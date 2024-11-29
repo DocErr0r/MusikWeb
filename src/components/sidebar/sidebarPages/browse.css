@@ -1,0 +1,7 @@
+.SSongcard{
+    border: 1px solid;
+    padding: 3px;
+    display: flex;
+    gap: 3px;
+    margin: 4px 0; 
+}
