@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { cart, logo, searchl } from '../svgs/svgs';
-import './navbar.css'
+import './navbar.css';
+import SearchModal from '../Modal/SearchModal';
 
 export default function Navbar(props) {
-    const nevigate=useNavigate()
+    const nevigate = useNavigate();
     const [search, setSearch] = useState('');
-    // const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState(false);
 
     function onchange(e) {
         setSearch(e.target.value);
     }
     const searchHendler = async (e) => {
         e.preventDefault();
-        nevigate('/browse?'+'search='+search)
+        nevigate('/browse?' + 'search=' + search);
     };
     return (
         <>
+            <SearchModal isOpen={modal} search={search} searchHendler setSearch={setSearch} onClose={() => setModal(false)} />
             <div className="header">
                 <div className="navbar flex space-between">
                     <div className="brand flex gap-1 center-y">
@@ -40,7 +42,8 @@ export default function Navbar(props) {
                                 <input className="none" type="search" placeholder="Search..." value={search} name="serach" data-toggle="dropdown" onChange={onchange} />
                                 <span className="center label" htmlFor="search-state" id="icon-search">
                                     <i className="icon-search center">
-                                        <img src={searchl} alt="" />
+                                        <img src={searchl} alt="" className="smmax-hidden" onClick={() => setModal(true)} />
+                                        <img src={searchl} alt="" className="sm-hidden" />
                                     </i>
                                 </span>
                                 <div className="dropdown-menu"></div>

@@ -37,6 +37,23 @@
     box-shadow: none;
     padding: 10px 0;
 }
+.search-form2 {
+    border-radius: 10px;
+    background-color: rgb(44, 43, 43);
+    width: 65%;
+    padding: 0 10px;
+}
+.search-form2 input {
+    width: 100%;
+    color: white;
+    font-weight: 600;
+    background: transparent;
+    box-shadow: none;
+    padding: 10px 0;
+}
+.search-form2 input:focus {
+    outline: none;
+}
 .search-form input:focus {
     outline: none;
 }
