@@ -4,46 +4,46 @@ import { Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromEle
 import Navbar from "./components/navbar/Navbar";
 // import Sidebar from "./components/sidebar/Sidebar";
 import Footer from "./components/footer/Footer";
-import Browse from "./components/sidebar/sidebarPages/Browse";
-import Discover from "./components/sidebar/sidebarPages/Discover";
+// import Browse from "./components/sidebar/sidebarPages/Browse";
+// import Discover from "./components/sidebar/sidebarPages/Discover";
 import Playlists from "./components/sidebar/sidebarPages/Playlist";
-import Likes from "./components/sidebar/sidebarPages/Likes";
+// import Likes from "./components/sidebar/sidebarPages/Likes";
 import "./App.css";
-import Mainpage from "./components/Main/Mainpage";
 import { ToastContainer } from "react-toastify";
 import Home from "./components/home/Home";
+import Browse from "./components/sidebar/sidebarPages/Browse";
 
 
 
 function App() {
 
-  const [visible, setVisible] = useState(false);
-  const handleResize = () => {
-    if (window.innerWidth <= 900) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  };
+  // const [visible, setVisible] = useState(false);
+  // const handleResize = () => {
+  //   if (window.innerWidth <= 900) {
+  //     setVisible(true);
+  //   } else {
+  //     setVisible(false);
+  //   }
+  // };
 
-  const [side, setSide] = useState(false);
-  const opensidebar = () => {
-    if (window.innerWidth <= 900) {
-      setSide(true);
-    }
-  };
-  const closeSidebar = () => {
-    if (window.innerWidth <= 900) {
-      setSide(false);
-    }
-  };
+  // const [side, setSide] = useState(false);
+  // const opensidebar = () => {
+  //   if (window.innerWidth <= 900) {
+  //     setSide(true);
+  //   }
+  // };
+  // const closeSidebar = () => {
+  //   if (window.innerWidth <= 900) {
+  //     setSide(false);
+  //   }
+  // };
 
-  window.addEventListener('resize', handleResize);
+  // window.addEventListener('resize', handleResize);
   const Root = () => {
     return (
       <>
         <nav className="headerS">
-          <Navbar opensidebar={opensidebar} />
+          <Navbar />
         </nav>
         <main className="flex">
           {/* <Sidebar visible={visible} closeSidebar={closeSidebar} side={side} /> */}
@@ -56,15 +56,13 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route element={<Mainpage />}>
-          <Route index element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          {/* <Route path="/browse" element={<Browse />} />
-        <Route path="/discover" element={<Discover />} />
+        <Route index element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/browse" element={<Browse />} />
+        {/* <Route path="/discover" element={<Discover />} />
         <Route path="/likes" element={<Likes />} /> */}
-          <Route path="/playlist/:id" element={<Playlists />} />
-          <Route path="*" element={<h1>This page is note found</h1>} />
-        </Route>
+        <Route path="/playlist/:id" element={<Playlists />} />
+        <Route path="*" element={<h1>This page is note found</h1>} />
       </Route>
     )
   );

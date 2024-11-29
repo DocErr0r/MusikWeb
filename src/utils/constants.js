@@ -1,7 +1,0 @@
-export const reducerCase = {
-    SET_TOKEN:"SET_TOKEN",
-    SET_PLAYLISTS:"SET_PLAYLISTS",
-    SET_PLAYLIST:"SET_PLAYLIST",
-    SET_PROFILE:"SET_PROFILE",
-    SET_SONG:'songset'
-}

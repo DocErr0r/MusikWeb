@@ -4,6 +4,7 @@ const initialState = {
     token: false,
     playlists: null,
     track: { song: null },
+    trackIndex: null,
     pltracks: [],
 
 }
@@ -30,6 +31,9 @@ const playerSlice = createSlice({
         setcrTrack: (state, action) => {
             state.track = action.payload
         },
+        setTrackIndex: (state, action) => {
+            state.trackIndex = action.payload
+        },
         setPlatlists: (state, action) => {
             state.playlists = action.payload
         }
@@ -37,6 +41,6 @@ const playerSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setToken, gettoken, settokenlocal, getSongs, setcrTrack, setplTracks,setPlatlists } = playerSlice.actions
+export const { setToken, gettoken, settokenlocal, getSongs, setcrTrack, setplTracks,setPlatlists ,setTrackIndex} = playerSlice.actions
 
 export default playerSlice.reducer
